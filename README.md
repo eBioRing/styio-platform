@@ -1,9 +1,5 @@
 # styio-platform
 
-> Repository status: `eBioRing/styio-platform` was archived on 2026-04-30.
-> Active downstream maintenance now lives at
-> <https://github.com/Unka-Malloc/styio-platform> on the `nightly` branch.
-
 `styio-platform` is the globally scalable cloud-computing service platform for
 the Styio ecosystem. It owns hosted compile services, multi-region deployment
 nodes, package repository distribution, mirror synchronization, registry
