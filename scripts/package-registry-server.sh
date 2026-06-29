@@ -105,7 +105,7 @@ sudo ./install.sh
 Safer internal default:
 
 \`\`\`text
-sudo ./install.sh --control-bind 127.0.0.1 --read-bind 0.0.0.0
+sudo ./install.sh --control-bind 127.0.0.1 --read-bind 127.0.0.1
 \`\`\`
 
 Manifest publish requests require a local spio binary. Pass it explicitly when

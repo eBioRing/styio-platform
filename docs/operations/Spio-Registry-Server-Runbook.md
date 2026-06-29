@@ -61,13 +61,13 @@ The default install creates:
 Safe default binds:
 
 - control plane: `127.0.0.1:8787`
-- read plane: `0.0.0.0:8788`
+- read plane: `127.0.0.1:8788`
 
 Use these flags when the VM has a non-default `spio` binary or a different
 network policy:
 
 ```text
-sudo ./install.sh --spio-bin /opt/spio/bin/spio --control-bind 127.0.0.1 --read-bind 0.0.0.0
+sudo ./install.sh --spio-bin /opt/spio/bin/spio --control-bind 127.0.0.1 --read-bind 127.0.0.1
 ```
 
 The installer initializes an empty but valid registry root before starting the
@@ -98,7 +98,7 @@ before exposing it outside the host.
 Use this when one origin handles both publish and fetch:
 
 ```text
-./scripts/registry-server-gate.py --registry-root https://registry.example.internal --spio-bin ./build-codex/bin/spio --json
+./scripts/registry-server-gate.py --registry-root https://registry.example.invalid --spio-bin ./build-codex/bin/spio --json
 ```
 
 What it proves:
@@ -111,19 +111,19 @@ What it proves:
 If the write origin sits behind an upload gateway that expects fixed headers, pass them explicitly:
 
 ```text
-./scripts/registry-server-gate.py --registry-root https://registry-upload.example.internal --publish-header 'X-Spio-Write-Token: dev-token' --spio-bin ./build-codex/bin/spio --json
+./scripts/registry-server-gate.py --registry-root https://registry-upload.example.invalid --publish-header 'X-Spio-Write-Token: <write-token>' --spio-bin ./build-codex/bin/spio --json
 ```
 
 If the deployment links a private security module and the write-origin rules should live in a reusable file instead of command-line headers:
 
 ```text
-./scripts/registry-server-gate.py --registry-root https://registry-upload.example.internal --publish-policy-file /etc/spio/publish-policy.toml --spio-bin ./build-codex/bin/spio --json
+./scripts/registry-server-gate.py --registry-root https://registry-upload.example.invalid --publish-policy-file /etc/spio/publish-policy.toml --spio-bin ./build-codex/bin/spio --json
 ```
 
 If the deployment links a private security module and already provisions a named profile under `SPIO_HOME/server/registry/publish-profiles/`, validate that path directly:
 
 ```text
-spio publish --manifest-path path/to/spio.toml --registry https://registry-upload.example.internal --registry-profile write-dev
+spio publish --manifest-path path/to/spio.toml --registry https://registry-upload.example.invalid --registry-profile write-dev
 ```
 
 ## 5. Split Publish and Fetch Origins
@@ -131,7 +131,7 @@ spio publish --manifest-path path/to/spio.toml --registry https://registry-uploa
 Use this when write traffic goes to an upload origin and read traffic goes to a download origin or CDN:
 
 ```text
-./scripts/registry-server-gate.py --publish-root https://registry-upload.example.internal --fetch-root https://registry.example.internal --sync-timeout-seconds 30 --spio-bin ./build-codex/bin/spio --json
+./scripts/registry-server-gate.py --publish-root https://registry-upload.example.invalid --fetch-root https://registry.example.invalid --sync-timeout-seconds 30 --spio-bin ./build-codex/bin/spio --json
 ```
 
 Notes:

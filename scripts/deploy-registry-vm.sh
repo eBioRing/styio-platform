@@ -19,7 +19,7 @@ Options:
   --registry-name <name>  Registry name (default: spio-registry-v2)
   --control-bind <addr>   Control-plane bind address (default: 127.0.0.1)
   --control-port <port>   Control-plane port (default: 8787)
-  --read-bind <addr>      Static read-plane bind address (default: 0.0.0.0)
+  --read-bind <addr>      Static read-plane bind address (default: 127.0.0.1)
   --read-port <port>      Static read-plane port (default: 8788)
   --python <path>         Python 3 executable (default: first python3 in PATH)
   --spio-bin <path>       spio binary for manifest publish requests (default: /usr/local/bin/spio)
@@ -64,7 +64,7 @@ SERVICE_GROUP=""
 REGISTRY_NAME="spio-registry-v2"
 CONTROL_BIND="127.0.0.1"
 CONTROL_PORT="8787"
-READ_BIND="0.0.0.0"
+READ_BIND="127.0.0.1"
 READ_PORT="8788"
 PYTHON_BIN="$(command -v python3 || true)"
 SPIO_BIN="/usr/local/bin/spio"
@@ -288,8 +288,6 @@ fi
 if [[ "$RUN_SMOKE" -eq 1 ]]; then
   smoke_control_host="$CONTROL_BIND"
   smoke_read_host="$READ_BIND"
-  [[ "$smoke_control_host" == "0.0.0.0" ]] && smoke_control_host="127.0.0.1"
-  [[ "$smoke_read_host" == "0.0.0.0" ]] && smoke_read_host="127.0.0.1"
   log "running VM smoke check"
   "$PYTHON_BIN" "$INSTALL_DIR/scripts/registry-v2-vm-smoke.py" \
     --control-url "http://$smoke_control_host:$CONTROL_PORT" \
