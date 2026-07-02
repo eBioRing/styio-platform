@@ -1,4 +1,4 @@
-# styio-platform Tests
+# styio-cloud Tests
 
 Tests cover the migrated platform kernel and service contract packages.
 

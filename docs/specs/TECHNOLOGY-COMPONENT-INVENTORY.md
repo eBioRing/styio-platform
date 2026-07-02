@@ -1,10 +1,10 @@
 # Technology And Component Inventory
 
-**Purpose:** Define the required technology-stack, internal-component, open-source-component, and dependency-manifest inventory for `styio-platform`.
+**Purpose:** Define the required technology-stack, internal-component, open-source-component, and dependency-manifest inventory for `styio-cloud`.
 
 **Last updated:** 2026-04-24
 
-This document is the repository-local maintenance rule for the manifest inventory audited by `styio-audit`. The canonical audit module must list the same surfaces in `for-styio-platform/module.json`; if this document and the audit manifest diverge, the change is not closed.
+This document is the repository-local maintenance rule for the manifest inventory audited by `styio-audit`. The canonical audit module must list the same surfaces in `for-styio-cloud/module.json`; if this document and the audit manifest diverge, the change is not closed.
 
 ## Required Inventory Fields
 
@@ -32,7 +32,7 @@ Technology stack:
 
 Internal components:
 
-- `PlatformService` route dispatch, daemon self-test, identity, object-store, and job lifecycle code.
+- `StyioCloudService` route dispatch, daemon self-test, identity, object-store, and job lifecycle code.
 - Registry control-plane and registry v2 contract packages.
 - VM registry deployment package, installer, static read server, and smoke gate.
 - Native contract governance, example packs, and source gates.

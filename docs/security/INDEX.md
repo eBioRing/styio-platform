@@ -10,4 +10,4 @@
 
 | Path | Entry | Summary |
 |------|-------|---------|
-| `Platform-Security-Boundary.md` | [Platform Security Boundary](./Platform-Security-Boundary.md) | Define the initial trust split for hosted compile and registry control-plane services. |
+| `Styio-Cloud-Security-Boundary.md` | [Platform Security Boundary](./Styio-Cloud-Security-Boundary.md) | Define the initial trust split for hosted compile and registry control-plane services. |

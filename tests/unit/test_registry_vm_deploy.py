@@ -19,7 +19,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from spio_registry_v2 import initialize_registry_v2_root, verify_registry_root  # noqa: E402
+from pafio_registry_v2 import initialize_registry_v2_root, verify_registry_root  # noqa: E402
 
 
 def start_server(handler: type) -> tuple[ThreadingHTTPServer, threading.Thread]:
@@ -54,7 +54,7 @@ class RegistryVmDeployTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             registry_root = pathlib.Path(temp_dir)
             (registry_root / "trust").mkdir(parents=True)
-            (registry_root / "config.json").write_text('{"protocol":"spio-static-registry"}', encoding="utf-8")
+            (registry_root / "config.json").write_text('{"protocol":"pafio-static-registry"}', encoding="utf-8")
             (registry_root / "trust" / "root.json").write_text('{"signed":{"version":1}}', encoding="utf-8")
 
             self.assertEqual(resolve_registry_file(registry_root, "/trust/root.json"), (registry_root / "trust" / "root.json").resolve())
@@ -69,7 +69,7 @@ class RegistryVmDeployTests(unittest.TestCase):
                 port = server.server_port
                 with urlopen(f"http://127.0.0.1:{port}/config.json", timeout=5) as response:
                     self.assertEqual(response.status, 200)
-                    self.assertEqual(json.loads(response.read().decode("utf-8"))["protocol"], "spio-static-registry")
+                    self.assertEqual(json.loads(response.read().decode("utf-8"))["protocol"], "pafio-static-registry")
                 with self.assertRaises(HTTPError) as missing:
                     urlopen(f"http://127.0.0.1:{port}/", timeout=5)
                 self.assertEqual(missing.exception.code, 404)
@@ -99,7 +99,7 @@ class RegistryVmDeployTests(unittest.TestCase):
             control_handler.registry_root = str(registry_root)
             control_handler.key_dir = str(key_dir)
             control_handler.registry_name = "vm-smoke"
-            control_handler.spio_bin = str(ROOT / "scripts" / "spio")
+            control_handler.pafio_bin = str(ROOT / "scripts" / "pafio")
             read_handler.registry_root = registry_root
 
             control_server, control_thread = start_server(control_handler)
@@ -141,12 +141,12 @@ class RegistryVmDeployTests(unittest.TestCase):
                 check=True,
             )
 
-            archive_path = output_dir / "styio-platform-registry-server-unit-test.tar.gz"
+            archive_path = output_dir / "styio-cloud-registry-server-unit-test.tar.gz"
             self.assertTrue(archive_path.exists())
             with tarfile.open(archive_path, "r:gz") as archive:
                 names = set(archive.getnames())
 
-            prefix = "styio-platform-registry-server-unit-test"
+            prefix = "styio-cloud-registry-server-unit-test"
             required = {
                 f"{prefix}/install.sh",
                 f"{prefix}/MANIFEST.json",
@@ -154,8 +154,8 @@ class RegistryVmDeployTests(unittest.TestCase):
                 f"{prefix}/scripts/registry-v2-control-plane-server.py",
                 f"{prefix}/scripts/registry-v2-static-read-server.py",
                 f"{prefix}/scripts/registry-v2-vm-smoke.py",
-                f"{prefix}/src/spio_registry_v2/__init__.py",
-                f"{prefix}/src/spio_registry_v2/publisher.py",
+                f"{prefix}/src/pafio_registry_v2/__init__.py",
+                f"{prefix}/src/pafio_registry_v2/publisher.py",
             }
             self.assertTrue(required.issubset(names), sorted(required - names))
 

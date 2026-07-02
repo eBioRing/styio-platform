@@ -17,15 +17,15 @@
       "root": "modules/default"
     },
     {
-      "description": "Project module for styio-platform cloud service contracts, service kernel, registry distribution, regional nodes, and delivery gates.",
+      "description": "Project module for styio-cloud cloud service contracts, service kernel, registry distribution, regional nodes, and delivery gates.",
       "last_updated": "2026-04-24",
-      "module_id": "for-styio-platform",
+      "module_id": "for-styio-cloud",
       "module_type": "project",
       "project_ids": [
-        "styio-platform",
+        "styio-cloud",
         "platform"
       ],
-      "root": "for-styio-platform"
+      "root": "for-styio-cloud"
     }
   ],
   "report_version": 1,
@@ -36,7 +36,7 @@
   },
   "target": {
     "framework_only": false,
-    "project": "styio-platform",
-    "repo_root": "<styio-platform-workspace>"
+    "project": "styio-cloud",
+    "repo_root": "<styio-cloud-workspace>"
   }
 }

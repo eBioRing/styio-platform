@@ -5,24 +5,24 @@ usage() {
   cat <<'USAGE'
 Usage: install.sh [options]
 
-Install a styio-platform spio registry server node on a Linux VM. The default
+Install a styio-cloud pafio registry server node on a Linux VM. The default
 mode installs a local registry v2 root, initializes signing keys, writes two
 systemd services, starts them, and runs a local smoke check.
 
 Options:
-  --install-dir <dir>     Runtime files directory (default: /opt/styio-platform-registry)
-  --state-dir <dir>       Registry state root (default: /var/lib/styio-platform/registry)
-  --config-dir <dir>      Environment file directory (default: /etc/styio-platform)
+  --install-dir <dir>     Runtime files directory (default: /opt/styio-cloud-registry)
+  --state-dir <dir>       Registry state root (default: /var/lib/styio-cloud/registry)
+  --config-dir <dir>      Environment file directory (default: /etc/styio-cloud)
   --systemd-dir <dir>     systemd unit directory (default: /etc/systemd/system)
-  --user <name>           Service user (default: styio-platform)
+  --user <name>           Service user (default: styio-cloud)
   --group <name>          Service group (default: same as --user)
-  --registry-name <name>  Registry name (default: spio-registry-v2)
+  --registry-name <name>  Registry name (default: pafio-registry-v2)
   --control-bind <addr>   Control-plane bind address (default: 127.0.0.1)
   --control-port <port>   Control-plane port (default: 8787)
   --read-bind <addr>      Static read-plane bind address (default: 127.0.0.1)
   --read-port <port>      Static read-plane port (default: 8788)
   --python <path>         Python 3 executable (default: first python3 in PATH)
-  --spio-bin <path>       spio binary for manifest publish requests (default: /usr/local/bin/spio)
+  --pafio-bin <path>       pafio binary for manifest publish requests (default: /usr/local/bin/pafio)
   --no-systemd            Install files and initialize state, but do not write or start units.
   --no-start              Write units, but do not enable/start services or run smoke.
   --skip-smoke            Start services without running the local smoke check.
@@ -49,25 +49,25 @@ shell_quote() {
 }
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if [[ -d "$script_dir/src/spio_registry_v2" && -f "$script_dir/scripts/registry-v2-control-plane-server.py" ]]; then
+if [[ -d "$script_dir/src/pafio_registry_v2" && -f "$script_dir/scripts/registry-v2-control-plane-server.py" ]]; then
   bundle_root="$script_dir"
 else
   bundle_root="$(cd "$script_dir/.." && pwd)"
 fi
 
-INSTALL_DIR="/opt/styio-platform-registry"
-STATE_DIR="/var/lib/styio-platform/registry"
-CONFIG_DIR="/etc/styio-platform"
+INSTALL_DIR="/opt/styio-cloud-registry"
+STATE_DIR="/var/lib/styio-cloud/registry"
+CONFIG_DIR="/etc/styio-cloud"
 SYSTEMD_DIR="/etc/systemd/system"
-SERVICE_USER="styio-platform"
+SERVICE_USER="styio-cloud"
 SERVICE_GROUP=""
-REGISTRY_NAME="spio-registry-v2"
+REGISTRY_NAME="pafio-registry-v2"
 CONTROL_BIND="127.0.0.1"
 CONTROL_PORT="8787"
 READ_BIND="127.0.0.1"
 READ_PORT="8788"
 PYTHON_BIN="$(command -v python3 || true)"
-SPIO_BIN="/usr/local/bin/spio"
+PAFIO_BIN="/usr/local/bin/pafio"
 WRITE_SYSTEMD=1
 START_SERVICES=1
 RUN_SMOKE=1
@@ -123,8 +123,8 @@ while [[ $# -gt 0 ]]; do
       PYTHON_BIN="$2"
       shift 2
       ;;
-    --spio-bin)
-      SPIO_BIN="$2"
+    --pafio-bin)
+      PAFIO_BIN="$2"
       shift 2
       ;;
     --no-systemd)
@@ -171,9 +171,9 @@ fi
 
 [[ -f "$bundle_root/scripts/registry-v2-control-plane-server.py" ]] || fail "bundle is missing scripts/registry-v2-control-plane-server.py"
 [[ -f "$bundle_root/scripts/registry-v2-static-read-server.py" ]] || fail "bundle is missing scripts/registry-v2-static-read-server.py"
-[[ -d "$bundle_root/src/spio_registry_v2" ]] || fail "bundle is missing src/spio_registry_v2"
+[[ -d "$bundle_root/src/pafio_registry_v2" ]] || fail "bundle is missing src/pafio_registry_v2"
 
-if [[ "$FORCE" -ne 1 && -e "$INSTALL_DIR" && ! -d "$INSTALL_DIR/src/spio_registry_v2" ]]; then
+if [[ "$FORCE" -ne 1 && -e "$INSTALL_DIR" && ! -d "$INSTALL_DIR/src/pafio_registry_v2" ]]; then
   fail "$INSTALL_DIR exists but does not look like a styio registry install; pass --force to replace managed files"
 fi
 
@@ -188,8 +188,8 @@ fi
 
 log "installing runtime files into $INSTALL_DIR"
 install -d -m 0755 "$INSTALL_DIR/scripts" "$INSTALL_DIR/src" "$CONFIG_DIR" "$REGISTRY_ROOT" "$KEY_DIR"
-rm -rf "$INSTALL_DIR/src/spio_registry_v2"
-cp -R "$bundle_root/src/spio_registry_v2" "$INSTALL_DIR/src/spio_registry_v2"
+rm -rf "$INSTALL_DIR/src/pafio_registry_v2"
+cp -R "$bundle_root/src/pafio_registry_v2" "$INSTALL_DIR/src/pafio_registry_v2"
 install -m 0755 "$bundle_root/scripts/registry-v2-control-plane-server.py" "$INSTALL_DIR/scripts/registry-v2-control-plane-server.py"
 install -m 0755 "$bundle_root/scripts/registry-v2-static-read-server.py" "$INSTALL_DIR/scripts/registry-v2-static-read-server.py"
 install -m 0755 "$bundle_root/scripts/registry-v2-vm-smoke.py" "$INSTALL_DIR/scripts/registry-v2-vm-smoke.py"
@@ -204,7 +204,7 @@ STYIO_REGISTRY_CONTROL_PORT=$(shell_quote "$CONTROL_PORT")
 STYIO_REGISTRY_READ_BIND=$(shell_quote "$READ_BIND")
 STYIO_REGISTRY_READ_PORT=$(shell_quote "$READ_PORT")
 STYIO_REGISTRY_PYTHON=$(shell_quote "$PYTHON_BIN")
-STYIO_REGISTRY_SPIO_BIN=$(shell_quote "$SPIO_BIN")
+STYIO_REGISTRY_PAFIO_BIN=$(shell_quote "$PAFIO_BIN")
 EOF
 chmod 0640 "$ENV_FILE"
 chown root:"$SERVICE_GROUP" "$ENV_FILE"
@@ -213,7 +213,7 @@ log "initializing registry root and signing keys"
 PYTHONPATH="$INSTALL_DIR/src" "$PYTHON_BIN" - "$REGISTRY_ROOT" "$KEY_DIR" "$REGISTRY_NAME" <<'PY'
 import pathlib
 import sys
-from spio_registry_v2 import initialize_registry_v2_root
+from pafio_registry_v2 import initialize_registry_v2_root
 
 registry_root = pathlib.Path(sys.argv[1])
 key_dir = pathlib.Path(sys.argv[2])
@@ -230,7 +230,7 @@ if [[ "$WRITE_SYSTEMD" -eq 1 ]]; then
   read_unit="$SYSTEMD_DIR/styio-registry-read.service"
   cat >"$control_unit" <<EOF
 [Unit]
-Description=Styio spio registry v2 control plane
+Description=Styio pafio registry v2 control plane
 After=network-online.target
 Wants=network-online.target
 
@@ -240,7 +240,7 @@ EnvironmentFile=$ENV_FILE
 WorkingDirectory=$INSTALL_DIR
 User=$SERVICE_USER
 Group=$SERVICE_GROUP
-ExecStart=$PYTHON_BIN $INSTALL_DIR/scripts/registry-v2-control-plane-server.py --root $REGISTRY_ROOT --key-dir $KEY_DIR --registry-name $REGISTRY_NAME --spio-bin $SPIO_BIN --bind $CONTROL_BIND --port $CONTROL_PORT
+ExecStart=$PYTHON_BIN $INSTALL_DIR/scripts/registry-v2-control-plane-server.py --root $REGISTRY_ROOT --key-dir $KEY_DIR --registry-name $REGISTRY_NAME --pafio-bin $PAFIO_BIN --bind $CONTROL_BIND --port $CONTROL_PORT
 Restart=on-failure
 RestartSec=3
 NoNewPrivileges=true
@@ -254,7 +254,7 @@ WantedBy=multi-user.target
 EOF
   cat >"$read_unit" <<EOF
 [Unit]
-Description=Styio spio registry v2 static read plane
+Description=Styio pafio registry v2 static read plane
 After=network-online.target
 Wants=network-online.target
 
@@ -296,5 +296,5 @@ if [[ "$RUN_SMOKE" -eq 1 ]]; then
 fi
 
 log "registry server deployment complete"
-log "control plane: http://$CONTROL_BIND:$CONTROL_PORT/api/spio-registry-control/v1/status"
+log "control plane: http://$CONTROL_BIND:$CONTROL_PORT/api/pafio-registry-control/v1/status"
 log "read plane: http://$READ_BIND:$READ_PORT/config.json"

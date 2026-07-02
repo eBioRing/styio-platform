@@ -7,7 +7,7 @@
 ## Mission
 
 Keep documentation governance aligned with the Styio ecosystem while making
-`styio-platform` the global cloud-service and package-distribution foundation.
+`styio-cloud` the global cloud-service and package-distribution foundation.
 
 ## Owned Surface
 
@@ -61,7 +61,7 @@ tracked`, and `./scripts/delivery-gate.sh --mode checkpoint --skip-audit`.
 
 ## Cross-Team Dependencies
 
-Coordinate with Platform Kernel and Control Plane when documentation changes
+Coordinate with Styio Cloud Kernel and Control Plane when documentation changes
 represent code, global service, package distribution, or mirror ownership
 changes.
 For cloud-service governance changes, verify that docs describe the native JSON

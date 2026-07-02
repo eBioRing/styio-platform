@@ -1,4 +1,4 @@
-# styio-platform Scripts
+# styio-cloud Scripts
 
 Platform scripts provide local server tools, native contract validation, stress
 validation, external audit validation, and repository governance gates.

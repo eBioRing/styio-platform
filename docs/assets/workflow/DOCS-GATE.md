@@ -1,6 +1,6 @@
 # Docs Gate
 
-**Purpose:** Define the common docs/process gate entrypoint for `styio-platform` so contributors can run owner-runbook maintenance and docs audit through one command.
+**Purpose:** Define the common docs/process gate entrypoint for `styio-cloud` so contributors can run owner-runbook maintenance and docs audit through one command.
 
 **Last updated:** 2026-04-19
 

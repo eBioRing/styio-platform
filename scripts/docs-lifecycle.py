@@ -6,17 +6,17 @@ import sys
 
 
 def refresh() -> int:
-    sys.stdout.write("styio-platform docs lifecycle refresh: no archive metadata model is active\n")
+    sys.stdout.write("styio-cloud docs lifecycle refresh: no archive metadata model is active\n")
     return 0
 
 
 def validate() -> int:
-    sys.stdout.write("styio-platform docs lifecycle validation passed\n")
+    sys.stdout.write("styio-cloud docs lifecycle validation passed\n")
     return 0
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Refresh or validate styio-platform docs lifecycle metadata.")
+    parser = argparse.ArgumentParser(description="Refresh or validate styio-cloud docs lifecycle metadata.")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("refresh")
     sub.add_parser("validate")

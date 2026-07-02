@@ -10,10 +10,10 @@
 
 | Path | Entry | Summary |
 |------|-------|---------|
-| `for-styio/` | [Styio Handoff Index](./for-styio/INDEX.md) | Document the compiler-facing expectations that styio-platform inherits from styio. |
+| `for-styio/` | [Styio Handoff Index](./for-styio/INDEX.md) | Document the compiler-facing expectations that styio-cloud inherits from styio. |
 
 ## Files
 
 | Path | Entry | Summary |
 |------|-------|---------|
-| `Styio-Spio-Downstream-Alignment.md` | [Styio Spio Downstream Alignment](./Styio-Spio-Downstream-Alignment.md) | Record how styio-platform stays downstream of both styio and styio-spio after the server migration. |
+| `Styio-Pafio-Downstream-Alignment.md` | [Styio And Pafio Downstream Alignment](./Styio-Pafio-Downstream-Alignment.md) | Record how styio-cloud stays downstream of both styio and pafio after the server migration. |

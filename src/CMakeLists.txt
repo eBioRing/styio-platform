@@ -1,82 +1,82 @@
-add_library(styio_platform_build_config INTERFACE)
-target_include_directories(styio_platform_build_config INTERFACE "${CMAKE_SOURCE_DIR}/src")
-target_compile_definitions(styio_platform_build_config INTERFACE
-  "SPIO_PROJECT_ROOT=\"${CMAKE_SOURCE_DIR}\""
-  "SPIO_PROJECT_VERSION=\"${PROJECT_VERSION}-platform-dev\""
-  "STYIO_PLATFORM_PROJECT_ROOT=\"${CMAKE_SOURCE_DIR}\""
+add_library(styio_cloud_build_config INTERFACE)
+target_include_directories(styio_cloud_build_config INTERFACE "${CMAKE_SOURCE_DIR}/src")
+target_compile_definitions(styio_cloud_build_config INTERFACE
+  "PAFIO_PROJECT_ROOT=\"${CMAKE_SOURCE_DIR}\""
+  "PAFIO_PROJECT_VERSION=\"${PROJECT_VERSION}-cloud-dev\""
+  "STYIO_CLOUD_PROJECT_ROOT=\"${CMAKE_SOURCE_DIR}\""
 )
-target_link_libraries(styio_platform_build_config INTERFACE tomlplusplus::tomlplusplus nlohmann_json::nlohmann_json)
+target_link_libraries(styio_cloud_build_config INTERFACE tomlplusplus::tomlplusplus nlohmann_json::nlohmann_json)
 
-function(styio_platform_add_static_library target)
+function(styio_cloud_add_static_library target)
   add_library(${target} STATIC ${ARGN})
-  target_link_libraries(${target} PUBLIC styio_platform_build_config)
+  target_link_libraries(${target} PUBLIC styio_cloud_build_config)
 endfunction()
 
-set(STYIO_PLATFORM_FOUNDATION_SOURCES
-    SpioCore/Paths.cpp
-    SpioCore/Process.cpp
-    SpioCore/Sha256.cpp
+set(STYIO_CLOUD_FOUNDATION_SOURCES
+    PafioCore/Paths.cpp
+    PafioCore/Process.cpp
+    PafioCore/Sha256.cpp
 )
 
-set(STYIO_PLATFORM_MANIFEST_SOURCES
-    SpioManifest/Lockfile.cpp
-    SpioManifest/Manifest.cpp
+set(STYIO_CLOUD_MANIFEST_SOURCES
+    PafioManifest/Lockfile.cpp
+    PafioManifest/Manifest.cpp
 )
 
-set(STYIO_PLATFORM_RESOLUTION_SOURCES
-    SpioRegistryClient/Client.cpp
-    SpioResolve/Resolver.cpp
-    SpioSecurity/RegistrySecurity.cpp
+set(STYIO_CLOUD_RESOLUTION_SOURCES
+    PafioRegistryClient/Client.cpp
+    PafioResolve/Resolver.cpp
+    PafioSecurity/RegistrySecurity.cpp
 )
 
-set(STYIO_PLATFORM_COMPILE_SOURCES
-    SpioPlan/CompilePlan.cpp
-    SpioToolchain/State.cpp
+set(STYIO_CLOUD_COMPILE_SOURCES
+    PafioPlan/CompilePlan.cpp
+    PafioToolchain/State.cpp
 )
 
-set(STYIO_PLATFORM_CLOUD_SOURCES
-    SpioCloud/Contract.cpp
-    SpioCloud/Execution.cpp
-    SpioCloud/Job.cpp
+set(STYIO_CLOUD_CLOUD_SOURCES
+    PafioCloud/Contract.cpp
+    PafioCloud/Execution.cpp
+    PafioCloud/Job.cpp
 )
 
-set(STYIO_PLATFORM_SERVICE_SOURCES
-    PlatformService/BeastServer.cpp
-    PlatformService/Config.cpp
-    PlatformService/Http.cpp
-    PlatformService/Identity.cpp
-    PlatformService/JobQueue.cpp
-    PlatformService/ObjectStore.cpp
-    PlatformService/PostgresStore.cpp
-    PlatformService/Router.cpp
+set(STYIO_CLOUD_SERVICE_SOURCES
+    StyioCloudService/BeastServer.cpp
+    StyioCloudService/Config.cpp
+    StyioCloudService/Http.cpp
+    StyioCloudService/Identity.cpp
+    StyioCloudService/JobQueue.cpp
+    StyioCloudService/ObjectStore.cpp
+    StyioCloudService/PostgresStore.cpp
+    StyioCloudService/Router.cpp
 )
 
-styio_platform_add_static_library(styio_platform_foundation ${STYIO_PLATFORM_FOUNDATION_SOURCES})
+styio_cloud_add_static_library(styio_cloud_foundation ${STYIO_CLOUD_FOUNDATION_SOURCES})
 
-styio_platform_add_static_library(styio_platform_manifest ${STYIO_PLATFORM_MANIFEST_SOURCES})
-target_link_libraries(styio_platform_manifest PUBLIC styio_platform_foundation)
+styio_cloud_add_static_library(styio_cloud_manifest ${STYIO_CLOUD_MANIFEST_SOURCES})
+target_link_libraries(styio_cloud_manifest PUBLIC styio_cloud_foundation)
 
-styio_platform_add_static_library(styio_platform_resolution ${STYIO_PLATFORM_RESOLUTION_SOURCES})
-target_link_libraries(styio_platform_resolution PUBLIC styio_platform_foundation styio_platform_manifest)
+styio_cloud_add_static_library(styio_cloud_resolution ${STYIO_CLOUD_RESOLUTION_SOURCES})
+target_link_libraries(styio_cloud_resolution PUBLIC styio_cloud_foundation styio_cloud_manifest)
 
-styio_platform_add_static_library(styio_platform_compile ${STYIO_PLATFORM_COMPILE_SOURCES})
-target_link_libraries(styio_platform_compile PUBLIC styio_platform_foundation styio_platform_manifest styio_platform_resolution)
+styio_cloud_add_static_library(styio_cloud_compile ${STYIO_CLOUD_COMPILE_SOURCES})
+target_link_libraries(styio_cloud_compile PUBLIC styio_cloud_foundation styio_cloud_manifest styio_cloud_resolution)
 
-styio_platform_add_static_library(styio_platform_cloud ${STYIO_PLATFORM_CLOUD_SOURCES})
-target_link_libraries(styio_platform_cloud PUBLIC styio_platform_compile)
+styio_cloud_add_static_library(styio_cloud_cloud ${STYIO_CLOUD_CLOUD_SOURCES})
+target_link_libraries(styio_cloud_cloud PUBLIC styio_cloud_compile)
 
-styio_platform_add_static_library(styio_platform_service ${STYIO_PLATFORM_SERVICE_SOURCES})
-target_link_libraries(styio_platform_service PUBLIC styio_platform_cloud)
+styio_cloud_add_static_library(styio_cloud_service ${STYIO_CLOUD_SERVICE_SOURCES})
+target_link_libraries(styio_cloud_service PUBLIC styio_cloud_cloud)
 
-add_library(styio_platform_kernel INTERFACE)
-target_link_libraries(styio_platform_kernel INTERFACE
-  styio_platform_foundation
-  styio_platform_manifest
-  styio_platform_resolution
-  styio_platform_compile
-  styio_platform_cloud
-  styio_platform_service
+add_library(styio_cloud_kernel INTERFACE)
+target_link_libraries(styio_cloud_kernel INTERFACE
+  styio_cloud_foundation
+  styio_cloud_manifest
+  styio_cloud_resolution
+  styio_cloud_compile
+  styio_cloud_cloud
+  styio_cloud_service
 )
 
-add_executable(styio-platformd PlatformService/Daemon.cpp)
-target_link_libraries(styio-platformd PRIVATE styio_platform_service)
+add_executable(styio-cloudd StyioCloudService/Daemon.cpp)
+target_link_libraries(styio-cloudd PRIVATE styio_cloud_service)

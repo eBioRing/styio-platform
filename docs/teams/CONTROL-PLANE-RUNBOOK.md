@@ -7,28 +7,28 @@
 ## Mission
 
 Keep global cloud service contracts executable and independently testable inside
-`styio-platform`, including multi-region deployment, package distribution, and
+`styio-cloud`, including multi-region deployment, package distribution, and
 mirror synchronization.
 
 ## Owned Surface
 
 - `contracts/compile-plan/`
 - `contracts/hosted-control-plane/`
-- `contracts/platform-control-plane/`
+- `contracts/styio-cloud-control-plane/`
 - `contracts/registry-control-plane/`
 - `contracts/registry-v2/`
-- `docs/governance/Platform-Global-Service-Model.md`
-- `docs/governance/Platform-Workspace-Compile-Model.md`
-- `docs/governance/Spio-Cloud-Control-Plane-Contract.md`
-- `docs/operations/Platform-Regional-Node-Runbook.md`
-- `docs/registry/Platform-Mirror-Synchronization-Contract.md`
+- `docs/governance/Styio-Cloud-Global-Service-Model.md`
+- `docs/governance/Styio-Cloud-Workspace-Compile-Model.md`
+- `docs/governance/Styio-Cloud-Control-Plane-Contract.md`
+- `docs/operations/Styio-Cloud-Regional-Node-Runbook.md`
+- `docs/registry/Styio-Cloud-Mirror-Synchronization-Contract.md`
 - `scripts/cloud-compile-stress.py`
 - `scripts/deploy-registry-vm.sh`
 - `scripts/package-registry-server.sh`
 - `scripts/registry-v2-control-plane-server.py`
 - `scripts/registry-v2-static-read-server.py`
 - `scripts/registry-v2-vm-smoke.py`
-- `src/spio_cloud_stress/`
+- `src/styio_cloud_stress/`
 - `tests/interop/` and `tests/unit/`
 
 ## Daily Workflow
@@ -67,14 +67,14 @@ deployment changes, include `python3 tests/unit/test_registry_vm_deploy.py`.
 
 ## Cross-Team Dependencies
 
-Coordinate with Platform Kernel when contracts depend on C++ payload shape.
+Coordinate with Styio Cloud Kernel when contracts depend on C++ payload shape.
 Coordinate with Docs Delivery whenever service ownership or runbooks change.
-Coordinate with upstream `styio-spio` when a platform distribution contract
+Coordinate with upstream `pafio` when a platform distribution contract
 changes local package-manager behavior.
 
 ## Handoff / Recovery
 
-If a server contract cannot move yet, keep a temporary `styio-spio` reference
-and record the platform-side blocker in `docs/planning/Platform-Migration-Plan.md`.
+If a server contract cannot move yet, keep a temporary `pafio` reference
+and record the platform-side blocker in `docs/planning/Styio-Cloud-Migration-Plan.md`.
 If a regional node or mirror sync contract is not executable yet, keep the
 documented contract here and record the missing gate before claiming cutover.

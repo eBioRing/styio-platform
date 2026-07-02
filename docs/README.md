@@ -1,4 +1,4 @@
-# styio-platform Documentation
+# styio-cloud Documentation
 
 **Purpose:** Define the documentation collections, gates, and ownership model for the global Styio cloud-service and package-distribution platform.
 
@@ -6,8 +6,8 @@
 
 ## Scope
 
-`styio-platform` documentation is downstream of the compiler contract in `styio`
-and the package-manager client contract in `styio-spio`. Platform docs own
+`styio-cloud` documentation is downstream of the compiler contract in `styio`
+and the package-manager client contract in `pafio`. Platform docs own
 hosted workspaces, compile-plan service execution, registry control-plane
 servers, package distribution, multi-region deployment nodes, mirror
 synchronization, workspace compile semantics, native C++/LLVM fallback, and

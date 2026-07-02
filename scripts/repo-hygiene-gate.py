@@ -35,8 +35,8 @@ FORBIDDEN_GLOBS = [
     "build-*/*",
     "dist",
     "dist/*",
-    ".spio",
-    ".spio/*",
+    ".pafio",
+    ".pafio/*",
     "docs/audit/defects/*",
 ]
 REQUIRED_GITIGNORE_PATTERNS = [
@@ -316,7 +316,7 @@ def print_report(header: str, problems: list[str]) -> int:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="styio-platform repository hygiene gate")
+    parser = argparse.ArgumentParser(description="styio-cloud repository hygiene gate")
     parser.add_argument("--mode", choices=("staged", "tracked", "push"), default="staged")
     parser.add_argument("--range", dest="rev_range")
     parser.add_argument("--max-file-bytes", type=int, default=DEFAULT_MAX_FILE_BYTES)

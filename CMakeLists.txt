@@ -4,7 +4,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type" FORCE)
 endif()
 
-project(styio_platform VERSION 0.1.0 LANGUAGES CXX)
+project(styio-cloud VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -32,9 +32,9 @@ FetchContent_MakeAvailable(tomlplusplus nlohmann_json)
 
 add_subdirectory(src)
 
-option(STYIO_PLATFORM_BUILD_TESTS "Build styio-platform native tests" ON)
+option(STYIO_CLOUD_BUILD_TESTS "Build styio-cloud native tests" ON)
 
-if(STYIO_PLATFORM_BUILD_TESTS)
+if(STYIO_CLOUD_BUILD_TESTS)
   enable_testing()
   add_subdirectory(tests)
 endif()

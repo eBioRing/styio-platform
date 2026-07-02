@@ -6,14 +6,14 @@
 
 ## Mission
 
-Keep `styio-platform` aligned with upstream compiler and package-manager repos
+Keep `styio-cloud` aligned with upstream compiler and package-manager repos
 while it becomes the global cloud-computing, regional deployment, and package
-distribution foundation for `styio-spio`.
+distribution foundation for `pafio`.
 
 ## Module Map
 
-- `src/SpioPlan/` and `src/SpioCloud/` provide the migrated platform kernel.
-- `docs/governance/Platform-Workspace-Compile-Model.md` owns the Styio default target, C++/LLVM workspace, and mixed compile rule.
+- `src/PafioPlan/` and `src/PafioCloud/` provide the migrated platform kernel.
+- `docs/governance/Styio-Cloud-Workspace-Compile-Model.md` owns the Styio default target, C++/LLVM workspace, and mixed compile rule.
 - `contracts/` publishes compile-plan, hosted control-plane, platform control-plane, registry control-plane, and registry v2 packages.
 - `docs/registry/` owns package distribution and mirror synchronization rules.
 - `docs/operations/` owns regional node deployment and recovery rules.
@@ -24,7 +24,7 @@ distribution foundation for `styio-spio`.
 
 | Surface | Owner |
 |---------|-------|
-| `src/`, `tests/`, workspace compile model | Platform Kernel |
+| `src/`, `tests/`, workspace compile model | Styio Cloud Kernel |
 | `contracts/`, server scripts, regional nodes, mirrors | Control Plane |
 | `docs/`, docs scripts | Docs Delivery |
 
@@ -44,9 +44,9 @@ precede executable compatibility gates for that kernel.
 ## Escalation Rules
 
 If a change requires compiler behavior, update the `styio` handoff. If a change
-requires package-manager CLI behavior, update the `styio-spio` handoff before
+requires package-manager CLI behavior, update the `pafio` handoff before
 platform closure.
-If a change affects offline package behavior, keep `styio-spio` local-first
+If a change affects offline package behavior, keep `pafio` local-first
 requirements authoritative and expose only the platform distribution contract
 here.
 If a change affects native C++ fallback or mixed compile execution, coordinate
@@ -60,10 +60,10 @@ repo hygiene for touched surfaces.
 
 ## Release / Cutover Gates
 
-Cutover from `styio-spio` is allowed only after platform CI owns equivalent
-server-side checks and `styio-spio` has client-only compatibility coverage.
+Cutover from `pafio` is allowed only after platform CI owns equivalent
+server-side checks and `pafio` has client-only compatibility coverage.
 
 ## Handoff / Recovery
 
-When a platform migration fails, keep `styio-spio` compatibility shims in place
+When a platform migration fails, keep `pafio` compatibility shims in place
 and record the missing platform gate in `docs/planning/`.

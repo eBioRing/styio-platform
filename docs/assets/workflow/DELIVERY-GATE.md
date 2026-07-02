@@ -1,6 +1,6 @@
 # Delivery Gate
 
-**Purpose:** Define the common delivery-floor entrypoint for `styio-platform` so contributors can run repository hygiene, the unified docs gate, native tests, and Python contract tests through one command before checkpoint merge or branch delivery.
+**Purpose:** Define the common delivery-floor entrypoint for `styio-cloud` so contributors can run repository hygiene, the unified docs gate, native tests, and Python contract tests through one command before checkpoint merge or branch delivery.
 
 **Last updated:** 2026-04-19
 

@@ -9,7 +9,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
-BASE_PATH = "/api/spio-registry-control/v1"
+BASE_PATH = "/api/pafio-registry-control/v1"
 
 
 def load_json_url(url: str, *, timeout: float, method: str = "GET", body: bytes | None = None) -> dict[str, Any]:
@@ -37,7 +37,7 @@ def run_smoke(control_url: str, read_url: str, *, timeout: float) -> dict[str, A
     ok = (
         status.get("returncode") == 0
         and verify.get("returncode") == 0
-        and config.get("protocol") == "spio-static-registry"
+        and config.get("protocol") == "pafio-static-registry"
         and config.get("protocol_version") == 2
         and isinstance(root.get("signed"), dict)
     )
@@ -55,7 +55,7 @@ def run_smoke(control_url: str, read_url: str, *, timeout: float) -> dict[str, A
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run a VM smoke check against a deployed spio registry server node.")
+    parser = argparse.ArgumentParser(description="Run a VM smoke check against a deployed pafio registry server node.")
     parser.add_argument("--control-url", required=True, help="Base URL for the registry control plane.")
     parser.add_argument("--read-url", required=True, help="Base URL for the registry static read plane.")
     parser.add_argument("--timeout", type=float, default=5.0)

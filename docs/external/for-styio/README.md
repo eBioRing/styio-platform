@@ -1,6 +1,6 @@
 # Styio Handoff
 
-**Purpose:** Document the compiler-facing expectations that `styio-platform` inherits from `styio`.
+**Purpose:** Document the compiler-facing expectations that `styio-cloud` inherits from `styio`.
 
 **Last updated:** 2026-04-24
 

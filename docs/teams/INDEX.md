@@ -14,4 +14,4 @@
 | `COORDINATION-RUNBOOK.md` | [Coordination Runbook](./COORDINATION-RUNBOOK.md) | Coordinate cross-team ownership for platform kernel, global control-plane, package distribution, and docs delivery changes. |
 | `DOC-STATS.md` | [Doc Stats](./DOC-STATS.md) | Track platform team runbook sizes so ownership updates are visible in review. |
 | `DOCS-DELIVERY-RUNBOOK.md` | [Docs Delivery Runbook](./DOCS-DELIVERY-RUNBOOK.md) | Own platform documentation structure, generated indexes, and docs gate automation. |
-| `PLATFORM-KERNEL-RUNBOOK.md` | [Platform Kernel Runbook](./PLATFORM-KERNEL-RUNBOOK.md) | Own the migrated compile-plan, mixed Styio/C++ compile model, cloud job request kernel, and C++ service-kernel integration boundary. |
+| `STYIO_CLOUD-KERNEL-RUNBOOK.md` | [Styio Cloud Kernel Runbook](./STYIO_CLOUD-KERNEL-RUNBOOK.md) | Own the migrated compile-plan, mixed Styio/C++ compile model, cloud job request kernel, and C++ service-kernel integration boundary. |

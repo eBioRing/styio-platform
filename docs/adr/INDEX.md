@@ -10,6 +10,6 @@
 
 | Path | Entry | Summary |
 |------|-------|---------|
-| `ADR-0012-phase4-build-dry-run-compile-plan.md` | [ADR-0012: Phase-4 Activates spio build --dry-run and Local Compile-Plan Emission](./ADR-0012-phase4-build-dry-run-compile-plan.md) | Record the decision, context, alternatives, and consequences for the first native compile-plan generation path behind spio build. |
+| `ADR-0012-phase4-build-dry-run-compile-plan.md` | [ADR-0012: Phase-4 Activates pafio build --dry-run and Local Compile-Plan Emission](./ADR-0012-phase4-build-dry-run-compile-plan.md) | Record the decision, context, alternatives, and consequences for the first native compile-plan generation path behind pafio build. |
 | `ADR-0023-phase6-url-based-registry-consume-and-cloud-static-layout.md` | [ADR-0023: Phase-6 Activates URL-Based Registry Consumption and a Cloud-Deployable Static Repository Layout](./ADR-0023-phase6-url-based-registry-consume-and-cloud-static-layout.md) | Record the decision to make the existing filesystem-registry layout the canonical package-repository contract for both local and cloud deployment, and to activate client-side registry dependency resolution against URL-addressable registry roots. |
 | `ADR-0025-registry-client-server-source-and-docs-split.md` | [ADR-0025: Registry Client and Server Concerns Are Split in Source and Docs](./ADR-0025-registry-client-server-source-and-docs-split.md) | Record the decision to keep registry consumption and registry publication in one repository while separating them explicitly at the source-tree and documentation levels. |

@@ -6,6 +6,6 @@
 
 ## Scope
 
-These files describe the common docs/process gates used by `styio-platform`.
-They intentionally mirror the `styio-spio` governance model where the same
+These files describe the common docs/process gates used by `styio-cloud`.
+They intentionally mirror the `pafio` governance model where the same
 automation shape is still useful.

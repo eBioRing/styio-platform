@@ -10,4 +10,4 @@
 
 | Path | Entry | Summary |
 |------|-------|---------|
-| `Platform-Migration-Plan.md` | [Platform Migration Plan](./Platform-Migration-Plan.md) | Capture the migration boundary from styio-spio into the global styio-platform cloud-service and package-distribution foundation. |
+| `Styio-Cloud-Migration-Plan.md` | [Platform Migration Plan](./Styio-Cloud-Migration-Plan.md) | Capture the migration boundary from pafio into the global styio-cloud cloud-service and package-distribution foundation. |

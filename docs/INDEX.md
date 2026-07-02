@@ -1,4 +1,4 @@
-# styio-platform Docs Index
+# styio-cloud Docs Index
 
 **Purpose:** Provide the generated inventory for `docs/`; directory boundaries and maintenance rules live in [README.md](./README.md).
 
@@ -10,7 +10,7 @@
 
 | Path | Entry | Summary |
 |------|-------|---------|
-| `adr/` | [ADR Index](./adr/INDEX.md) | Record platform boundary decisions inherited from styio-spio and new decisions made inside styio-platform. |
+| `adr/` | [ADR Index](./adr/INDEX.md) | Record platform boundary decisions inherited from pafio and new decisions made inside styio-cloud. |
 | `assets/` | [Assets Index](./assets/INDEX.md) | Collect reusable documentation assets for platform workflows, gates, and runbook maintenance. |
 | `audit/` | [Audit Index](./audit/INDEX.md) | Store platform audit summaries and durable findings that should survive beyond a single delivery checkpoint. |
 | `external/` | [External Docs Index](./external/INDEX.md) | Track upstream and downstream handoff documents for the platform repository. |

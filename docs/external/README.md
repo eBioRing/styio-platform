@@ -6,5 +6,5 @@
 
 ## Scope
 
-External docs describe how `styio-platform` consumes `styio` compiler contracts
-and `styio-spio` package-manager contracts.
+External docs describe how `styio-cloud` consumes `styio` compiler contracts
+and `pafio` package-manager contracts.

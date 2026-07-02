@@ -54,4 +54,4 @@ if git -C "$AUDIT_ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo "styio-audit commit: $(git -C "$AUDIT_ROOT" rev-parse HEAD)"
 fi
 
-"$AUDIT_BIN" gate --repo "$ROOT" --project styio-platform
+"$AUDIT_BIN" gate --repo "$ROOT" --project styio-cloud

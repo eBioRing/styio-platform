@@ -1,6 +1,6 @@
 # Post Commit CI Checks
 
-**Purpose:** Require post-push validation for `styio-platform` changes before work is reported as closed.
+**Purpose:** Require post-push validation for `styio-cloud` changes before work is reported as closed.
 
 **Last updated:** 2026-04-26
 

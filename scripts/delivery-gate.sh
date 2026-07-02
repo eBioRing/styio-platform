@@ -17,6 +17,7 @@ Options:
   --skip-audit              Skip external styio-audit gate
   --audit-bin <path>        Explicit styio-audit executable
   --build-dir <dir>         Build directory for CMake validation
+  --cmake-arg <arg>         Extra CMake configure argument; repeatable
   -h, --help                Show this help
 USAGE
 }
@@ -33,8 +34,15 @@ run_cmd() {
 run_contract_gates() {
   run_cmd python3 tests/interop/native-contract-source-gate.py
   for contract_mode in unit integration regression smoke fuzz; do
-    run_cmd python3 tests/interop/platform-control-plane-contract-gate.py --mode "$contract_mode"
+    run_cmd python3 tests/interop/styio-cloud-control-plane-contract-gate.py --mode "$contract_mode"
   done
+}
+
+run_health_checks() {
+  run_cmd cmake -S . -B "$BUILD_DIR" -DSTYIO_CLOUD_BUILD_TESTS=ON "${EXTRA_CMAKE_ARGS[@]}"
+  run_cmd cmake --build "$BUILD_DIR"
+  run_cmd ctest --test-dir "$BUILD_DIR" --output-on-failure
+  run_cmd python3 -m unittest tests/unit/test_cloud_compile_stress.py
 }
 
 default_upstream_base() {
@@ -51,6 +59,7 @@ RUN_HEALTH=1
 RUN_AUDIT=1
 AUDIT_BIN=""
 BUILD_DIR="build-codex"
+EXTRA_CMAKE_ARGS=()
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -82,6 +91,10 @@ while [[ $# -gt 0 ]]; do
       BUILD_DIR="$2"
       shift 2
       ;;
+    --cmake-arg)
+      EXTRA_CMAKE_ARGS+=("$2")
+      shift 2
+      ;;
     -h|--help)
       usage
       exit 0
@@ -97,7 +110,6 @@ done
 REPO_CMD=(python3 scripts/repo-hygiene-gate.py)
 DOCS_GATE_CMD=(./scripts/docs-gate.sh)
 AUDIT_CMD=(./scripts/audit-gate.sh)
-HEALTH_CMD=(bash -c "cmake -S . -B '$BUILD_DIR' -DSTYIO_PLATFORM_BUILD_TESTS=ON && cmake --build '$BUILD_DIR' && ctest --test-dir '$BUILD_DIR' --output-on-failure && python3 -m unittest tests/unit/test_cloud_compile_stress.py")
 
 if [[ -n "$AUDIT_BIN" ]]; then
   AUDIT_CMD+=(--audit-bin "$AUDIT_BIN")
@@ -139,7 +151,7 @@ fi
 run_contract_gates
 
 if [[ "$RUN_HEALTH" -eq 1 ]]; then
-  run_cmd "${HEALTH_CMD[@]}"
+  run_health_checks
 else
   log "native/Python health checks skipped"
 fi

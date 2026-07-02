@@ -9,89 +9,89 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
-add_executable(styio_platform_native_tests
-  native/PlatformKernelTests.cpp
+add_executable(styio_cloud_native_tests
+  native/StyioCloudKernelTests.cpp
 )
-target_link_libraries(styio_platform_native_tests PRIVATE styio_platform_kernel GTest::gtest_main)
+target_link_libraries(styio_cloud_native_tests PRIVATE styio_cloud_kernel GTest::gtest_main)
 
-gtest_discover_tests(styio_platform_native_tests DISCOVERY_TIMEOUT 30)
+gtest_discover_tests(styio_cloud_native_tests DISCOVERY_TIMEOUT 30)
 
 add_test(
-  NAME styio_platform_cloud_compile_stress_unit
+  NAME styio_cloud_cloud_compile_stress_unit
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/unit/test_cloud_compile_stress.py"
 )
 
 add_test(
-  NAME styio_platform_registry_v2_unit
+  NAME styio_cloud_registry_v2_unit
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/unit/test_registry_v2.py"
 )
 
 add_test(
-  NAME styio_platform_registry_vm_deploy_unit
+  NAME styio_cloud_registry_vm_deploy_unit
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/unit/test_registry_vm_deploy.py"
 )
 
 add_test(
-  NAME styio_platform_registry_v2_contract
+  NAME styio_cloud_registry_v2_contract
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/registry-v2-contract-gate.py"
 )
 
 add_test(
-  NAME styio_platform_registry_control_plane_contract
+  NAME styio_cloud_registry_control_plane_contract
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/registry-control-plane-contract-gate.py"
 )
 
 add_test(
-  NAME styio_platform_hosted_api_contract_unit
+  NAME styio_cloud_hosted_api_contract_unit
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/hosted-control-plane-contract-gate.py" --mode unit
 )
 
 add_test(
-  NAME styio_platform_hosted_api_contract_integration
+  NAME styio_cloud_hosted_api_contract_integration
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/hosted-control-plane-contract-gate.py" --mode integration
 )
 
 add_test(
-  NAME styio_platform_hosted_api_contract_regression
+  NAME styio_cloud_hosted_api_contract_regression
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/hosted-control-plane-contract-gate.py" --mode regression
 )
 
 add_test(
-  NAME styio_platform_hosted_api_contract_smoke
+  NAME styio_cloud_hosted_api_contract_smoke
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/hosted-control-plane-contract-gate.py" --mode smoke
 )
 
 add_test(
-  NAME styio_platform_hosted_api_contract_fuzz
+  NAME styio_cloud_hosted_api_contract_fuzz
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/hosted-control-plane-contract-gate.py" --mode fuzz
 )
 
 add_test(
-  NAME styio_platform_control_plane_contract_unit
-  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/platform-control-plane-contract-gate.py" --mode unit
+  NAME styio_cloud_control_plane_contract_unit
+  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/styio-cloud-control-plane-contract-gate.py" --mode unit
 )
 
 add_test(
-  NAME styio_platform_control_plane_contract_integration
-  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/platform-control-plane-contract-gate.py" --mode integration
+  NAME styio_cloud_control_plane_contract_integration
+  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/styio-cloud-control-plane-contract-gate.py" --mode integration
 )
 
 add_test(
-  NAME styio_platform_control_plane_contract_regression
-  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/platform-control-plane-contract-gate.py" --mode regression
+  NAME styio_cloud_control_plane_contract_regression
+  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/styio-cloud-control-plane-contract-gate.py" --mode regression
 )
 
 add_test(
-  NAME styio_platform_control_plane_contract_smoke
-  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/platform-control-plane-contract-gate.py" --mode smoke
+  NAME styio_cloud_control_plane_contract_smoke
+  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/styio-cloud-control-plane-contract-gate.py" --mode smoke
 )
 
 add_test(
-  NAME styio_platform_control_plane_contract_fuzz
-  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/platform-control-plane-contract-gate.py" --mode fuzz
+  NAME styio_cloud_control_plane_contract_fuzz
+  COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/styio-cloud-control-plane-contract-gate.py" --mode fuzz
 )
 
 add_test(
-  NAME styio_platform_native_contract_source_gate
+  NAME styio_cloud_native_contract_source_gate
   COMMAND python3 "${CMAKE_SOURCE_DIR}/tests/interop/native-contract-source-gate.py"
 )

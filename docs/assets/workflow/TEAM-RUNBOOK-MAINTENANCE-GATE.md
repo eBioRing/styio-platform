@@ -51,7 +51,7 @@ All non-coordination runbooks must follow [TEAM-RUNBOOK-TEMPLATE.md](./TEAM-RUNB
 
 | Team doc | Watched paths |
 |----------|---------------|
-| `PLATFORM-KERNEL-RUNBOOK.md` | `src/`, `tests/`, `CMakeLists.txt`, native build/test scripts |
+| `STYIO_CLOUD-KERNEL-RUNBOOK.md` | `src/`, `tests/`, `CMakeLists.txt`, native build/test scripts |
 | `CONTROL-PLANE-RUNBOOK.md` | `contracts/`, server scripts, control-plane docs, Python contract tests |
 | `DOCS-DELIVERY-RUNBOOK.md` | `README.md`, `docs/`, docs scripts, hygiene/docs/delivery gate scripts |
 

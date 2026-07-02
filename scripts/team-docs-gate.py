@@ -23,9 +23,9 @@ class TeamRule:
 
 TEAM_RULES: tuple[TeamRule, ...] = (
     TeamRule(
-        "platform_kernel",
-        "Platform Kernel",
-        Path("docs/teams/PLATFORM-KERNEL-RUNBOOK.md"),
+        "styio_cloud_kernel",
+        "Styio Cloud Kernel",
+        Path("docs/teams/STYIO_CLOUD-KERNEL-RUNBOOK.md"),
         (
             "src/",
             "tests/",
@@ -47,7 +47,7 @@ TEAM_RULES: tuple[TeamRule, ...] = (
             "scripts/registry-v2-control-plane-server.py",
             "scripts/registry-v2-static-read-server.py",
             "scripts/registry-v2-vm-smoke.py",
-            "src/spio_cloud_stress/",
+            "src/styio_cloud_stress/",
             "tests/interop/",
             "tests/unit/",
         ),
@@ -77,7 +77,7 @@ TEAM_RULES: tuple[TeamRule, ...] = (
 
 TEAM_RUNBOOKS = {
     Path("docs/teams/COORDINATION-RUNBOOK.md"),
-    Path("docs/teams/PLATFORM-KERNEL-RUNBOOK.md"),
+    Path("docs/teams/STYIO_CLOUD-KERNEL-RUNBOOK.md"),
     Path("docs/teams/CONTROL-PLANE-RUNBOOK.md"),
     Path("docs/teams/DOCS-DELIVERY-RUNBOOK.md"),
 }
@@ -284,7 +284,7 @@ def run_gate(changed_paths: Sequence[Path], verbose: bool) -> int:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Require styio-platform team runbook updates when owned folders change.")
+    parser = argparse.ArgumentParser(description="Require styio-cloud team runbook updates when owned folders change.")
     parser.add_argument("--mode", choices=["worktree", "staged"], default="worktree")
     parser.add_argument("--base", default=os.environ.get("STYIO_TEAM_DOC_GATE_BASE"))
     parser.add_argument("--verbose", action="store_true")

@@ -7,4 +7,4 @@
 ## Scope
 
 Planning docs should separate verified migration closure from future cleanup,
-especially when `styio-spio` still carries compatibility shims.
+especially when `pafio` still carries compatibility shims.
