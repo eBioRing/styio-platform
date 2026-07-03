@@ -66,4 +66,4 @@ server-side checks and `pafio` has client-only compatibility coverage.
 ## Handoff / Recovery
 
 When a platform migration fails, keep `pafio` compatibility shims in place
-and record the missing platform gate in `docs/planning/`.
+and record the missing platform gate in `docs/plan/`.
